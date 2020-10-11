@@ -6,9 +6,6 @@ It contains several different notebooks to be run in order. First, a database wa
 # Creating the database...
 
 
-
-
-
 # This notebook will take our csv dataset, create a mysql table, and insert
 
 ### The dataset used is the Insurance Claims dataset from Kaggle
@@ -39,19 +36,7 @@ df.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -365,3 +350,5 @@ X_test.to_sql(name='test_dataset', con=engine, if_exists = 'append', index=False
 ```
 
 ### Now that the data is stored in the database, we will continue to next notebook
+
+
