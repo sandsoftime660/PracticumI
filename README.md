@@ -5,6 +5,7 @@ It contains several different notebooks to be run in order. First, a database wa
 
 # Creating the database...
 
+![Image of Database](https://github.com/sandsoftime660/PracticumI/blob/main/Database_View.PNG)
 
 # This notebook will take our csv dataset, create a mysql table, and insert
 
