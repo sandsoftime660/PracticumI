@@ -1,11 +1,17 @@
-# PracticumI
-This is an overview of my practicum I course project.
+# Practicum I Course Project
+This is an overview of my practicum I course project
+
+## The project attempts to create a real world example of how a fraud model could be implemented. The dataset is from Kaggle and is linked below.
 
 It contains several different notebooks to be run in order. First, a database was created using MySQL Workbench:
 
 # Creating the database...
 
 ![Image of Database](https://github.com/sandsoftime660/PracticumI/blob/main/Database_View.PNG)
+
+
+# Insert_Modeling_Dataset.ipynb
+
 
 # This notebook will take our csv dataset, create a mysql table, and insert
 
