@@ -7,7 +7,7 @@ It contains several different notebooks to be run in order. First, a database wa
 
 # Creating the database...
 
-![Image of Database](https://github.com/sandsoftime660/PracticumI/blob/main/Database_View.PNG)
+![Image of Database](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Database_View.PNG)
 
 
 # Insert_Modeling_Dataset.ipynb
