@@ -304,15 +304,15 @@ Afterwards, we pickled the file to save the pandas dtypes
 
 #### This notebook took a capping approach to the numeric outliers. By calculating the mean and standard deviation, finding the low and high values that were 3 std away, capping values were set. If a value fell outside of this capped value, we used the capped value instead.
 
-![Image of Database](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Capping_Values.PNG)
+![Image of capping](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Capping_Values.PNG)
 
 #### Encoding was used for categorical values. Target, polynomial, and several others were tried. The final choice was for one-hot. I found the target encoding to not be as predictive. 
 
-![Image of Database](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Dummy.PNG)
+![Image of dummy](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Dummy.PNG)
 
 #### FeatureTools was used to create more features to model. This was to highlight the capabilities of the tool. While it works well for a single dataframe, applying this to a relational database would assist an analyst not familiar with the data and how it is related. The choice to use one hot encoding created over 6000+ features. I was torn between going back to the less predictive target encoding.
 
-![Image of Database](https://github.com/sandsoftime660/PracticumI/blob/main/Images/FeatureTools.PNG)
+![Image of featuretools](https://github.com/sandsoftime660/PracticumI/blob/main/Images/FeatureTools.PNG)
 
 # 02.1 - Test Dataset Prep.ipynb
 
