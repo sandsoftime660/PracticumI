@@ -308,11 +308,11 @@ Afterwards, we pickled the file to save the pandas dtypes
 
 #### Encoding was used for categorical values. Target, polynomial, and several others were tried. The final choice was for one-hot. I found the target encoding to not be as predictive. 
 
-![Image of dummy](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Dummy.png)
+![Image of dummy](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Dummy.PNG)
 
 #### FeatureTools was used to create more features to model. This was to highlight the capabilities of the tool. While it works well for a single dataframe, applying this to a relational database would assist an analyst not familiar with the data and how it is related. The choice to use one hot encoding created over 6000+ features. I was torn between going back to the less predictive target encoding.
 
-![Image of featuretools](https://github.com/sandsoftime660/PracticumI/blob/main/Images/FeatureTools.png)
+![Image of featuretools](https://github.com/sandsoftime660/PracticumI/blob/main/Images/FeatureTools.PNG)
 
 # 02.1 - Test Dataset Prep.ipynb
 
@@ -324,3 +324,28 @@ Please view the ipynb file for a walkthrough
 
 # 03 - Modeling-Final.ipynb
 
+## Now, on to the fun stuff
+
+### The approach here was almost pure machine learning with very little 'data look'. Techniques such as TPOT, gridsearch, and auto feature reduction really gave this the machine driven vibe. Ultimately, I would like to turn this project into a continuous learning model. With that in mind, an algorithmic decision approach was implemented.
+
+#### Our data was split 80/20. We only had 1000 rows of data so a validation dataset was not included in the analysis. Our target was not terribly imbalanced:
+
+![Image of target](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Target.PNG)
+
+#### TPOT was used for the inital analysis. I had not used it before, but automation was the goal here.
+
+![Image of tpotcode](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Tpot_Code.PNG)
+
+#### Oversampling was done once we found our optimal pipeline:
+
+![Image of oversample](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Oversample.PNG)
+
+I tried SMOTE, SVMSMOTE, and ADASYN. However, when attempting to explain a prediction at the end and compare an input value, having synthetic data proved to be difficult.
+
+#### I attempted to use Dask with TPOT. It worked well for awhile, but would always crash. Here is a view of dask at work (while it was):
+
+![Image of dasktpot](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Dask_TPOT.PNG)
+
+### The Final Model:
+
+![Image of finalmodel](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Final_Model.PNG)
