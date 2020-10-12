@@ -11,6 +11,8 @@ First, a database was created using MySQL Workbench:
 
 ![Image of Database](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Database_View.PNG)
 
+#### The motivation for using the database was to show how easily data can be queried from a database, put into a dataframe, and tables for training set distributions can be saved for realtime API usage. Rather than having a project filled with thousands of lines of sql joins and manipulation, having an analytics database (Say, a claims database with large, wide tables that already include all data elements at a claim level) is key to a quick and clean modeling process.
+
 # Insert_Modeling_Dataset.ipynb
 
 ## This notebook will take our csv dataset, create a mysql table, and insert
@@ -24,26 +26,7 @@ First, a database was created using MySQL Workbench:
 ## This notebook will begin the data cleaning and exploration. Basically, we look at the dtypes, missing, etc.
 Please see the ipynb file for details
 
-```python
-# Retrieve modeling dataset from the database
-# Connecting to mysql database using sqlalchemy. This allows us to insert and retrieve dataframes with ease
-
-# import mysql.connector
-from sqlalchemy import create_engine
-
-# Using an f string to input the user and password
-connstring = f'mysql+mysqlconnector://{user}:{password}@127.0.0.1:3306/claims'
-# Engine is a factory for connection. The connection does not happen here
-engine = create_engine(connstring, echo=False)
-# Connection happens here. Be sure to close
-dbConnection    = engine.connect()
-# Reading the table into a dataframe
-df = pd.read_sql("select * from claims.train_dataset", dbConnection);
-# Closing the connection
-dbConnection.close()
-
-df.head()
-```
+### Here is a look at our data:
 
 <div>
 
@@ -307,7 +290,9 @@ df.head()
 </table>
 </div>
 
-Afterwards, we will pickle the file to save the pandas dtypes
+Afterwards, we pickled the file to save the pandas dtypes
+
+### This notebook was basic checking data types and missing values. Missing values were kept since there are times when having a missing value may be predictive (Zip missing, for example).
 
 # 02 - Feature Engineering.ipynb
 
@@ -315,13 +300,25 @@ Afterwards, we will pickle the file to save the pandas dtypes
 ### Some things done here may include binning, banding, dummy, normalization, etc
 
 
-### We are treating this dataset with a no-look approach. Often, it is too time consuming or impractical to look at each feature. I personally have not tried this approach before. However with some datasets (say, 15,000 features wide), it is impossible to look at each features distribution. Therefore, we are attempting a programmatic approach for experimentation
+### We treated this dataset with a no-look approach. Often, it is too time consuming or impractical to look at each feature. I personally have not tried this approach before. However with some datasets (say, 15,000 features wide), it is impossible to look at each features distribution. Therefore, we are attempting a programmatic approach for experimentation.
 
+#### This notebook took a capping approach to the numeric outliers. By calculating the mean and standard deviation, finding the low and high values that were 3 std away, capping values were set. If a value fell outside of this capped value, we used the capped value instead.
 
+![Image of Database](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Capping_Values.PNG)
+
+#### Encoding was used for categorical values. Target, polynomial, and several others were tried. The final choice was for one-hot. I found the target encoding to not be as predictive. 
+
+![Image of Database](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Dummy.PNG)
+
+#### FeatureTools was used to create more features to model. This was to highlight the capabilities of the tool. While it works well for a single dataframe, applying this to a relational database would assist an analyst not familiar with the data and how it is related. The choice to use one hot encoding created over 6000+ features. I was torn between going back to the less predictive target encoding.
+
+![Image of Database](https://github.com/sandsoftime660/PracticumI/blob/main/Images/FeatureTools.PNG)
 
 # 02.1 - Test Dataset Prep.ipynb
 
-## This notebook will apply transformations to the test dataset. 
+## This notebook applied the training transformations to the test dataset. 
+
+#### The reason for this seperate notebook was to highlight the importance of keeping any training dataset distribution information out of the feature engineering. After modeling, I had the chance to review others that had worked with this dataset. I was shocked that my model performance was much lower. However, every entry leaked training information into the test data.  
 
 Please view the ipynb file for a walkthrough
 
