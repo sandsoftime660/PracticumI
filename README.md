@@ -308,11 +308,11 @@ Afterwards, we pickled the file to save the pandas dtypes
 
 #### Encoding was used for categorical values. Target, polynomial, and several others were tried. The final choice was for one-hot. I found the target encoding to not be as predictive. 
 
-![Image of dummy](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Dummy.PNG)
+![Image of dummy](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Dummy.png)
 
 #### FeatureTools was used to create more features to model. This was to highlight the capabilities of the tool. While it works well for a single dataframe, applying this to a relational database would assist an analyst not familiar with the data and how it is related. The choice to use one hot encoding created over 6000+ features. I was torn between going back to the less predictive target encoding.
 
-![Image of featuretools](https://github.com/sandsoftime660/PracticumI/blob/main/Images/FeatureTools.PNG)
+![Image of featuretools](https://github.com/sandsoftime660/PracticumI/blob/main/Images/FeatureTools.png)
 
 # 02.1 - Test Dataset Prep.ipynb
 
