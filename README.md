@@ -304,6 +304,10 @@ Afterwards, we pickled the file to save the pandas dtypes
 
 #### This notebook took a capping approach to the numeric outliers. By calculating the mean and standard deviation, finding the low and high values that were 3 std away, capping values were set. If a value fell outside of this capped value, we used the capped value instead.
 
+![Image of capping](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Cutoff_Chart.PNG)
+
+#### Below is an image of what those values looked like
+
 ![Image of capping](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Capping_Values.PNG)
 
 #### Encoding was used for categorical values. Target, polynomial, and several others were tried. The final choice was for target encoding. I found the target encoding to not be as predictive, however.
@@ -340,12 +344,64 @@ Please view the ipynb file for a walkthrough
 
 ![Image of oversample](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Oversample.PNG)
 
-I tried SMOTE, SVMSMOTE, and ADASYN. However, when attempting to explain a prediction at the end and compare an input value, having synthetic data proved to be difficult.
+I tried SMOTE, SVMSMOTE, and ADASYN. I ended up using SVMSMOTE.
 
 #### I attempted to use Dask with TPOT. It worked well for awhile, but would always crash. Here is a view of dask at work (while it was):
 
 ![Image of dasktpot](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Dask_TPOT.PNG)
 
-### The Final Model:
+### The Final Model chosen was a GradientBoostingClassifier with SelectKBest feature selection. TPOT really helped defining what type of model to use. 
 
-![Image of finalmodel](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Final_Model.PNG)
+A neural network actually performed very well on this dataset. However, explaining the prediction was difficult and there were only a few features in the final model.
+
+![Image of model](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Final_Model.PNG)
+
+##### After TPOT ran, I was able to narrow down a pipeline. I ran TPOT on the original dataset, then bootstrapped, then ran grid search to find more optimal parameters.
+
+10 features were selected for the final model. Parsimonious was a goal, but leaving enough features in to be able to give context to the prediction required a balance. 
+
+### Feature importance was done via permutation due to decision tree placing more importance on high cardinality features:
+
+![Image of model](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Feature_Importance.PNG)
+
+### The goal was to set a cutoff for the predicted probabilites to increase precision (reducing false positives). However, the final model proved difficult in this regard. Recall and accuracy dropped considerably with no precision gain.
+
+Future recommendations are to spend time defining two seperate models. One for prediction and one for explainability.
+
+![Image of precision_recall](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Precision_Recall.PNG)
+
+## Model Evaluation
+
+### Model evaluation was done via lift chart and auc curve. 
+
+#### The auc curve showed excellent predictive power. Stair stepping was expected, but results were incredibly smooth
+
+![Image of auc](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Auc_Curve.PNG)
+
+#### The lift chart showed great seperation between the classes. Expected volatility in the lower probabilities, but this was not the case. 
+
+![Image of lift](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Lift_Chart.PNG)
+
+#### The confusion matrix:
+
+This looks great for accuracy and recall. As mentioned, precision suffered. There were other model types that increased precision to ~ 80%. However, these models proved difficult to explain. 
+
+![Image of confusion](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Confusion_Matrix.PNG)
+
+#### Accuracy, Recall, and Precision:
+
+![Image of accuracy](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Accuracy.PNG)
+
+## Explaining the Prediction
+
+### This was possibly the most important aspect of the project. Being able to explain to an adjuster why a claim was fraudulent provided the most gain for the business side. 
+
+ELI5 was used to explain the predictions and put them in context to the adjuster. An example of a prediction is below:
+
+![Image of explain](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Explain_Prediction.PNG)
+
+#### The contributing features can be compared to the mean of the target for that value and put into context, as shown below
+
+![Image of reason](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Reason_Message.PNG)
+
+## This wraps up the analysis! 
