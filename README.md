@@ -402,6 +402,6 @@ ELI5 was used to explain the predictions and put them in context to the adjuster
 
 #### The contributing features can be compared to the mean of the target for that value and put into context, as shown below
 
-![Image of reason](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Reason_Message.PNG)
+![Image of reason](https://github.com/sandsoftime660/PracticumI/blob/main/Images/Reason_Message2.PNG)
 
 ## This wraps up the analysis! 
