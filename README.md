@@ -300,7 +300,6 @@ Afterwards, we pickled the file to save the pandas dtypes
 ## The purpose of this notebook is to engineer some of the features to be used in the model.
 ### Some things done here may include binning, banding, dummy, normalization, etc
 
-
 ### We treated this dataset with a no-look approach. Often, it is too time consuming or impractical to look at each feature. I personally have not tried this approach before. However with some datasets (say, 15,000 features wide), it is impossible to look at each features distribution. Therefore, we are attempting a programmatic approach for experimentation.
 
 #### This notebook took a capping approach to the numeric outliers. By calculating the mean and standard deviation, finding the low and high values that were 3 std away, capping values were set. If a value fell outside of this capped value, we used the capped value instead.
