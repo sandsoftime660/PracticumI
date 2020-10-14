@@ -26,6 +26,7 @@ First, a database was created using MySQL Workbench:
 ## This notebook will begin the data cleaning and exploration. Basically, we look at the dtypes, missing, etc.
 Please see the ipynb file for details
 
+
 ### Here is a look at our data:
 
 <div>
